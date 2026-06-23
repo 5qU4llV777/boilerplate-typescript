@@ -38,3 +38,7 @@ npx tsc --init
 dist/
 node_modules/
 ```
+## mude de branch para não alterar seu Boilerplate
+``` javascript
+git checkout -b develop
+```
