@@ -38,3 +38,19 @@ npx tsc --init
 dist/
 node_modules/
 ```
+## mude de branch para não alterar seu Boilerplate
+``` javascript
+git checkout -b develop
+```
+## se fosse para fazer merge seria assim 
+``` javascript
+# 1. Volta para a main
+git checkout main
+
+# 2. Faz o merge da develop
+git merge develop
+
+# 3. Sobe para o GitHub
+git push origin main
+
+```
