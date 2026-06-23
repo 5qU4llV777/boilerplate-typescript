@@ -54,3 +54,8 @@ git merge develop
 git push origin main
 
 ```
+
+## Para projeto de api esse são os frameworks + banco de dados interno
+``` javascript
+npm i fastify@4.26.2 @fastify/cors@9.0.1 @fastify/static@9.1.3 @prisma/client@5.22.0 prisma@5.22.0 dotenv@17.4.2
+```
