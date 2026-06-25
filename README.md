@@ -59,3 +59,8 @@ git push origin main
 ``` javascript
 npm i fastify@4.26.2 @fastify/cors@9.0.1 @fastify/static@9.1.3 @prisma/client@5.22.0 prisma@5.22.0 dotenv@17.4.2
 ```
+
+## Para iniciar as config prisma
+``` javascript
+npx prisma init
+```
