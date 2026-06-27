@@ -80,3 +80,14 @@ tsx prisma/seed.ts
 ``` javascript
 npx prisma studio 
 ```
+Criando o projeto React
+Dentro da pasta frontend, rode:
+
+``` javascript
+npx create-react-app frontend --template typescript
+```
+
+
+``` javascript
+npx create-next-app@latest frontend --ts
+```
