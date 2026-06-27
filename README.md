@@ -38,3 +38,56 @@ npx tsc --init
 dist/
 node_modules/
 ```
+## mude de branch para não alterar seu Boilerplate
+``` javascript
+git checkout -b develop
+```
+## se fosse para fazer merge seria assim 
+``` javascript
+# 1. Volta para a main
+git checkout main
+
+# 2. Faz o merge da develop
+git merge develop
+
+# 3. Sobe para o GitHub
+git push origin main
+
+```
+
+## Para projeto de api esse são os frameworks + banco de dados interno
+``` javascript
+npm i fastify@4.26.2 @fastify/cors@9.0.1 @fastify/static@9.1.3 @prisma/client@5.22.0 prisma@5.22.0 dotenv@17.4.2
+```
+
+## Para iniciar as config prisma
+``` javascript
+npx prisma init
+```
+## depois gerar o cliente prisma
+``` javascript
+npx prisma generate
+```
+## para fazer o migrate
+``` javascript
+npx prisma migrate dev
+```
+## ative o script npm scripts ou rode no terminal
+``` javascript
+tsx prisma/seed.ts
+```
+## para ver database foi populada certo 
+``` javascript
+npx prisma studio 
+```
+Criando o projeto React
+Dentro da pasta frontend, rode:
+
+``` javascript
+npx create-react-app frontend --template typescript
+```
+
+
+``` javascript
+npx create-next-app@latest frontend --ts
+```
