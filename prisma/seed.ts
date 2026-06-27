@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
+
+
 const prisma = new PrismaClient();
 
 // ─── Dados do Exame ──────────────────────────────────────────────────────────
@@ -948,3 +950,5 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
+ 

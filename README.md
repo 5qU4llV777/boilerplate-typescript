@@ -64,3 +64,19 @@ npm i fastify@4.26.2 @fastify/cors@9.0.1 @fastify/static@9.1.3 @prisma/client@5.
 ``` javascript
 npx prisma init
 ```
+## depois gerar o cliente prisma
+``` javascript
+npx prisma generate
+```
+## para fazer o migrate
+``` javascript
+npx prisma migrate dev
+```
+## ative o script npm scripts ou rode no terminal
+``` javascript
+tsx prisma/seed.ts
+```
+## para ver database foi populada certo 
+``` javascript
+npx prisma studio 
+```

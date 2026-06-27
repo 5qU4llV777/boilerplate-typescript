@@ -1,66 +1,23 @@
-import fastify from "fastify";
-import cors from "@fastify/cors";
+import Fastify from "fastify";
 import { PrismaClient } from "@prisma/client";
 
-
-
-const server = fastify({ logger: true });
+const fastify = Fastify();
 const prisma = new PrismaClient();
 
-server.register(cors, { origin: "*" });
-
-
-
-server.get("/teams", async (_, reply) => {
-  const teams = await prisma.team.findMany({ include: { drivers: true } });
-  return reply.code(200).send({ teams });
-});
-
-server.get("/drivers", async (_, reply) => {
-  const drivers = await prisma.driver.findMany({ include: { team: true } });
-  return reply.code(200).send({ drivers });
-});
-
-server.get<{ Params: { id: string } }>("/drivers/:id", async (request, reply) => {
-  const id = parseInt(request.params.id);
-  const driver = await prisma.driver.findUnique({
-    where: { id },
-    include: { team: true },
+fastify.get("/exam/:id", async (req, reply) => {
+  const exam = await prisma.exam.findUnique({
+    where: { id: Number((req.params as any).id) },
+    include: { questions: { include: { answers: true } } },
   });
-
-  if (!driver) {
-    return reply.code(404).send({ message: "Driver Not Found" });
-  }
-  return reply.code(200).send({ driver });
+  return exam;
 });
 
-server.get<{ Params: { name: string } }>("/championships/driver/:name", async (request, reply) => {
-  const { name } = request.params;
-
-  const driver = await prisma.driver.findFirst({
-    where: { name: { contains: name } }, // SQLite não suporta mode: "insensitive"
-    include: {
-      championships: {
-        include: { team: true },
-        orderBy: { year: "asc" },
-      },
-    },
-  });
-
-  if (!driver) {
-    return reply.code(404).send({ message: "Driver not found" });
-  }
-
-  return reply.code(200).send({
-    driver: driver.name,
-    totalTitles: driver.championships.length,
-    championships: driver.championships.map((c) => ({
-      year: c.year,
-      team: c.team.name,
-    })),
-  });
+fastify.post("/exam/:examId/answer", async (req, reply) => {
+  const { questionId, answerId } = req.body as any;
+  const answer = await prisma.answer.findUnique({ where: { id: answerId } });
+  return { correct: answer?.isCorrect };
 });
 
-server.listen({ port: 3333 }, () => {
-  console.log("Server init");
+fastify.listen({ port: 3000 }, () => {
+  console.log("Servidor rodando em http://localhost:3000");
 });
